@@ -1,0 +1,18 @@
+update dependencies SB  to 3.3.3
+adding a service layer between controllers and repos
+Batch the DB operations
+dont use Entities as DTOs
+
+
+
+Notes:
+multithreading when updating cache
+give award to all/every employee
+
+
+main use case= give awards to the employee
+quick overview of the activity in the app
+
+future proof suggestions?
+error/fails handling
+circuit breakers
