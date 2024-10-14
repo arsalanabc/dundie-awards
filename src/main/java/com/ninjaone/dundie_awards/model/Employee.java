@@ -1,6 +1,7 @@
 package com.ninjaone.dundie_awards.model;
 
 import jakarta.persistence.*;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 @Table(name = "employees")
@@ -17,7 +18,7 @@ public class Employee {
     private String lastName;
 
     @Column(name = "dundie_awards")
-    private Integer dundieAwards;
+    private Integer dundieAwards = 0;
 
     @ManyToOne
     private Organization organization;

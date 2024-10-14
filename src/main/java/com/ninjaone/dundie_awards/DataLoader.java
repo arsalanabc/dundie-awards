@@ -28,9 +28,10 @@ public class DataLoader implements CommandLineRunner {
         // employeeRepository.deleteAll();
         // organizationRepository.deleteAll();
 
-        if (employeeRepository.count() == 0) {
             Organization organizationPikashu = new Organization("Pikashu");
             organizationRepository.save(organizationPikashu);
+
+        if (employeeRepository.count() == 0) {
 
             employeeRepository.save(new Employee("John", "Doe", organizationPikashu));
             employeeRepository.save(new Employee("Jane", "Smith", organizationPikashu));
@@ -48,6 +49,6 @@ public class DataLoader implements CommandLineRunner {
         int totalAwards = employeeRepository.findAll().stream()
                 .mapToInt(employee -> Objects.requireNonNullElse(employee.getDundieAwards(), 0))
                 .sum();
-        this.awardsCache.setTotalAwards(totalAwards);
+        this.awardsCache.setTotalAwards(organizationPikashu.getId(), totalAwards);
     }
 }
