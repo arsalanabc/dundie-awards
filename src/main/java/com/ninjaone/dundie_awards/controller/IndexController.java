@@ -37,6 +37,8 @@ public class IndexController {
         model.addAttribute("employees", employees);
         model.addAttribute("activities", activityRepository.findAll());
         model.addAttribute("queueMessages", messageBroker.getMessages());
+
+        // remove duplicate org ids
         model.addAttribute("totalDundieAwards", employees.stream().mapToInt(e -> awardsCache.getTotalAwards(e.getOrganization().getId())).sum());
         return "index";
     }

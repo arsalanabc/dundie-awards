@@ -32,6 +32,10 @@ public class BaseService<K> {
         return baseRepository.save(k);
     }
 
+    public K update(K k){
+        return baseRepository.save(k);
+    }
+
     public K create(K k){
         return baseRepository.save(k);
     }
