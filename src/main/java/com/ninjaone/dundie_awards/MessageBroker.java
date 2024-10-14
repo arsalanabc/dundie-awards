@@ -1,21 +1,25 @@
 package com.ninjaone.dundie_awards;
 
 import com.ninjaone.dundie_awards.model.Activity;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.LinkedList;
 import java.util.List;
 
 @Component
 public class MessageBroker {
 
-    private List<Activity> messages = new LinkedList<>();
+    @Value("${message_broker_url}")
+    String url;
+
+    RestTemplate restTemplate = new RestTemplate();
 
     public void sendMessage(Activity message) {
-        messages.add(message);
+        restTemplate.postForObject( url+"/messages", message, Activity.class);
     }
 
     public List<Activity> getMessages(){
-        return messages;
+        return restTemplate.getForObject( url+"/messages", List.class);
     }
 }
