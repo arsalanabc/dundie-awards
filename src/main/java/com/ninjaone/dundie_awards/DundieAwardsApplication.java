@@ -13,7 +13,7 @@ import java.time.Duration;
 
 @SpringBootApplication
 @EnableCaching
-@Profile({"main_app", "broker"})
+@Profile({"app", "broker"})
 public class DundieAwardsApplication {
 
 	public static void main(String[] args) {

@@ -1,0 +1,8 @@
+springdoc:
+  api-docs:
+    path: /openapi
+server:
+  port: ${SPRING_PORT}
+
+# we can remove this by assigning the right profiles to the broker
+message_broker_url: ""

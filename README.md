@@ -17,3 +17,36 @@ Become familiar with the application and it's characteristics. Use your favorite
 In the call, we will introduce new code to the application, and you will comment on issues with the endpoint. Please be ready to share your screen in the call with us with the application ready to run. 
 
 **Bonus:** Spot any issues or potential improvements you notice in the application while you're familiarizing yourself and make note of them for our call. We would love to see your input in how to make this application better.
+
+## Running locally
+
+### Dependencies
+
+- Docker
+- Gradle
+- Makefile extension 
+
+Use Makefile to run the app locally in a container
+
+- To build with gradle `make gradle-build`
+
+Build the container images
+
+- To build with gradle `make dc-build`
+
+Run the app
+
+- To build with gradle `make dc-up`
+
+
+### Endpoints
+
+- To give an AWARD to an employee with ID
+- `/employees/ID/award/AWARD`
+  - i.e. `localhost:3000/employees/1/award/BEST_DAD_AWARD`
+
+
+- See the message queue
+- `localhost:3001/messages`
+
+

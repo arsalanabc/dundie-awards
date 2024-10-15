@@ -1,0 +1,37 @@
+springdoc:
+  api-docs:
+    path: /openapi
+server:
+  port: ${SPRING_PORT}
+
+spring:
+  #    datasource:
+#      url: jdbc:h2:mem:mydb
+#      username: sa
+#      password: password
+#      driverClassName: org.h2.Driver
+#    jpa:
+#      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+  cache:
+    type: redis
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: 6379
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_URL}:5432/postgres
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    show-sql: false
+    properties:
+      ## Hibernate Properties
+      # The SQL dialect makes Hibernate generate better SQL for the chosen database
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    # Hibernate ddl auto (create, create-drop, validate, update)
+    hibernate:
+      ddl-auto: update
+
+message_broker_url: ${MESSAGE_BROKER_URL}
