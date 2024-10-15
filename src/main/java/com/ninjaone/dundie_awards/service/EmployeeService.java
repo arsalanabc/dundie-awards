@@ -7,6 +7,8 @@ import com.ninjaone.dundie_awards.model.Employee;
 import com.ninjaone.dundie_awards.repository.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EmployeeService extends BaseService<Employee> {
@@ -20,6 +22,7 @@ public class EmployeeService extends BaseService<Employee> {
         super(baseRepository);
     }
 
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void giveAward(Long id, DundieAward awardType) {
         Employee employee = this.get(id).orElseThrow();
         employee.setDundieAwards(employee.getDundieAwards()+1);

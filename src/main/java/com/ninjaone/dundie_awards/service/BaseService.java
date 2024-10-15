@@ -1,10 +1,11 @@
 package com.ninjaone.dundie_awards.service;
 
 import com.ninjaone.dundie_awards.repository.BaseRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-
+@Transactional
 public class BaseService<K> {
 
     final BaseRepository<K> baseRepository;
