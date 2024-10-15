@@ -14,7 +14,7 @@ import java.util.Map;
 @Component
 @CacheConfig(cacheNames = "awards")
 public class AwardsCache {
-    private Map<Long, AwardsRecordDTO> awardsRecord = new HashMap<>();
+    private final Map<Long, AwardsRecordDTO> awardsRecord = new HashMap<>();
 
     @CachePut( key = "#organizationId")
     public int setTotalAwards(Long organizationId, int totalAwards) {
@@ -29,8 +29,9 @@ public class AwardsCache {
 
     @CachePut(key = "#organizationId")
     public int addOneAward(Long organizationId){
-        this.awardsRecord.put(organizationId, new AwardsRecordDTO(organizationId, this.getTotalAwards(organizationId)+1));
-        return this.getTotalAwards(organizationId);
+        int currentAwards = this.awardsRecord.getOrDefault(organizationId, new AwardsRecordDTO(organizationId, 0)).totalAwards();
+        this.awardsRecord.put(organizationId, new AwardsRecordDTO(organizationId, currentAwards+1));
+        return currentAwards+1;
     }
 
 }
