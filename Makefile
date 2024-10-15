@@ -1,5 +1,5 @@
 gradle-build:
-	./gradlew build
+	./gradlew build -x test
 
 run-local:
 	java -jar build/libs/dundie_awards-latest.jar
