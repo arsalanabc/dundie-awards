@@ -39,7 +39,10 @@ public class IndexController {
         model.addAttribute("queueMessages", messageBroker.getMessages());
 
         // remove duplicate org ids
-        model.addAttribute("totalDundieAwards", employees.stream().mapToInt(e -> awardsCache.getTotalAwards(e.getOrganization().getId())).sum());
+        model.addAttribute("totalDundieAwards", employees.stream()
+                        .map(Employee::getOrganization)
+                        .distinct()
+                .mapToInt(o -> awardsCache.getTotalAwards(o.getId())).sum());
         return "index";
     }
 }
