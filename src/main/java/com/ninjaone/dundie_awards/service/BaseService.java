@@ -1,5 +1,6 @@
 package com.ninjaone.dundie_awards.service;
 
+import com.ninjaone.dundie_awards.exception.NotFound;
 import com.ninjaone.dundie_awards.repository.BaseRepository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,14 @@ public class BaseService<K> {
         this.baseRepository = baseRepository;
     }
 
-    public Optional<K> get(Long id){ return baseRepository.findById(id);}
+    public Optional<K> get(Long id){
+        Optional<K> result = baseRepository.findById(id);
+
+       if(result.isEmpty()){
+                throw new NotFound(String.valueOf(id));
+       }
+       return result;
+    }
 
     public List<K> getAll(){
         return baseRepository.findAll();
